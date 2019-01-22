@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+}
+
+group 'vezba'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.j256.ormlite', name: 'ormlite-core', version: '4.48'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+task brisanje{
+    group "moji fajlovi"
+    println "clean ucitan"
+    doFirst{
+        println "Cleaning"
+    }
+}
+task kompajliranje{
+    group "moji fajlovi"
+    println "compile ucitan"
+    doFirst{
+        println "Compiling java..."
+    }
+}
+task bild{
+    group"moji fajlovi"
+    println "build ucitan"
+    doFirst{
+        println "Building java..."
+    }
+}
+task Test3{
+    group "moji fajlovi"
+    println "test ucitan"
+    doFirst{
+        println "Running tests..."
+    }
+}
+task deploy{
+    group "moji fajlovi"
+    println "deploy ucitan"
+    doFirst{
+        println "Deploying"
+    }
+}
+kompajliranje.dependsOn brisanje
+bild.dependsOn kompajliranje
+Test3.dependsOn bild
+deploy.dependsOn Test3
+
+
+
+

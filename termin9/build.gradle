@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id'application'
+}
+mainClassName = "Test"
+
+group 'aad'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+task drugiTask{
+    group "moji taskovi"
+    description "drugi task"
+    println "ovo je drugi task (konfiguracija)"
+    doFirst{
+        println "doFirst drugog taska"
+    }
+    doLast {
+        println "doLast drugog taska"
+    }
+}
+
+task prviTask {
+    group "moji taskovi"
+    description "prvi task"
+    println "Ovo je prvi task (konfiguracija)"
+    doFirst {
+        println "doFirst prvog taska"
+    }
+    doLast {
+        println "doLast prvog taska"
+    }
+}
+drugiTask.dependsOn prviTask
+
+task treciTask{
+    group "moji taskovi"
+    description "treci task"
+    println "ovo je treci task(konfiguracija)"
+    
+    doFirst{
+        println "doFirst treceg taska"
+    }
+    doLast{
+         println "doLast treceg taska"
+    }
+}
+treciTask.dependsOn drugiTask
+
+task nakonPokretanja {
+    doFirst {
+        println "Izvrsavanje aplikacije zavrseno"
+    }
+}
+nakonPokretanja.dependsOn run 
+
+defaultTasks "run"
